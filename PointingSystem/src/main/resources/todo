@@ -1,0 +1,14 @@
+TODO
+	security
+	actuators
+	Swagger
+	JUnit
+	E2E
+	Integrationtesting
+	Docker
+	Deployment
+
+Done:
+	springcrosscuttingconcernsinseparatejar
+	errorhandling
+	logging
