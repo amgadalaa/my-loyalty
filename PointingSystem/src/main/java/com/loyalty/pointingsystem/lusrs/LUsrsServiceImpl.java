@@ -58,7 +58,7 @@ public class LUsrsServiceImpl implements ILUsrsService {
 			if (foundRelationOptional.isPresent()) {
 
 				// then update
-				log.debug("Relation exists, updating");
+				log.debug("Relation exists,  updating");
 				PointsRelationEntity foundRelation = foundRelationOptional.get();
 				foundRelation.addPoints(toAddPoints);
 
@@ -71,7 +71,7 @@ public class LUsrsServiceImpl implements ILUsrsService {
 
 		} else {
 			// new usr to create and new relation should be created
-			log.debug("LUsr doesn't exist, creating usr with its relation");
+			log.debug("LUsr doesn't exist, creating usr  with its relation");
 			lUsr = new LUserEntity();
 			lUsr.setSystemLUserId(lUsrId);
 			createRelationInLUsr(lUsr, cPnt, toAddPoints);
