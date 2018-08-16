@@ -2,13 +2,14 @@ TODO
 	security
 	actuators
 	Swagger
-	JUnit
 	E2E
-	Integrationtesting
+	Integration testing
 	Docker
 	Deployment
+	history keeping for transactions
 
 Done:
-	springcrosscuttingconcernsinseparatejar
-	errorhandling
+	spring cross cutting concerns in separate jar
+	error handling
 	logging
+	JUnit

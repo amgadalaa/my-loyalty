@@ -1,7 +1,9 @@
 package com.loyalty.pointingsystem.lusrs;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,6 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.junit4.rules.SpringClassRule;
 import org.springframework.test.context.junit4.rules.SpringMethodRule;
 
@@ -23,6 +24,7 @@ import com.loyalty.pointingsystem.entities.CPntEntity;
 import com.loyalty.pointingsystem.entities.LUserEntity;
 import com.loyalty.pointingsystem.entities.PointsRelationEntity;
 import com.loyalty.pointingsystem.lusrs.dto.AddPointsRequest;
+
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 

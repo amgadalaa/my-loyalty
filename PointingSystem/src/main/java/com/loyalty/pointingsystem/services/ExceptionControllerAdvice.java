@@ -1,15 +1,16 @@
 package com.loyalty.pointingsystem.services;
 
-import javax.annotation.PostConstruct;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -22,7 +23,6 @@ public class ExceptionControllerAdvice extends ResponseEntityExceptionHandler {
 
 	private Logger log = LoggerFactory.getLogger(getClass());
 
-	
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 
@@ -53,6 +53,15 @@ public class ExceptionControllerAdvice extends ResponseEntityExceptionHandler {
 
 		return new ResponseEntity<>(customError, headers, status);
 
+	}
+
+	@ExceptionHandler({ Exception.class })
+	@Nullable
+	public final ResponseEntity<Object> handleInternalErrorException(Exception ex, WebRequest request) {
+		// TODO should we set the priority for exception handler to avoid
+		// picking all exceptions
+		return handleExceptionInternal(ex, null, null, HttpStatus.INTERNAL_SERVER_ERROR, request,
+				GeneralApplicationErrorCodes.NO_APPLICATION_CODE);
 	}
 
 }

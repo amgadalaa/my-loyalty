@@ -7,8 +7,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,8 +27,6 @@ import com.loyalty.pointingsystem.lusrs.dto.AddPointsRequest;
 @RestController
 @RequestMapping("/lusrs")
 public class LusrsResource {
-
-	private Logger log = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private ILUsrsService lUsrSrv;
@@ -66,7 +62,7 @@ public class LusrsResource {
 		}
 	}
 
-	/*
+	/**
 	 * Endpoint to find LUsr and return his details.
 	 * 
 	 * @param lUsrId the LUsr to find.
@@ -102,13 +98,13 @@ public class LusrsResource {
 	 *         in the body, in case of error the body will contain
 	 *         {@link ErrorResponse}
 	 */
-	@RequestMapping(path = "/{lUserId}/points/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(path = "/{lUserId}/points", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> addPointsForLoyalUserToCachierPoint(
 			@PathVariable(name = "lUserId", required = true) Long lUsrId,
 			@Valid @RequestBody AddPointsRequest newPoints) {
 
-		// TODO unit tests
-		// ToDO check can be used for negative value as well?
+		//TODO check can be used for negative value as well?
+		//TODO add to transaction to history
 		LUserEntity lUsr = lUsrSrv.addPointsForLoyalUserToCachierPoint(lUsrId, newPoints);
 		return ResponseEntity.ok(lUsr);
 	}

@@ -1,0 +1,5 @@
+- Users management
+- pointing system
+- offers management
+- recommendations  
+- reporting
