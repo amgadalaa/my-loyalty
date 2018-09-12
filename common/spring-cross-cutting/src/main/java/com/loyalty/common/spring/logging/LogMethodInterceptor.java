@@ -1,7 +1,5 @@
 package com.loyalty.common.spring.logging;
 
-import javax.annotation.PostConstruct;
-
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -19,10 +17,14 @@ public class LogMethodInterceptor {
 	public Object logServiceAccess(ProceedingJoinPoint joinPoint) throws Throwable {
 		log.info("Received request for method: {}, with args {} ", joinPoint.getSignature(), joinPoint.getArgs());
 
-		Object output = joinPoint.proceed();
-
-		log.info("Resposne from method is: {}", output);
-		return output;
+		try {
+			Object output = joinPoint.proceed();
+			log.info("Resposne from method is: {}", output);
+			return output;
+		} catch (Throwable e) {
+			log.info("Exception occured while executing method, EX:  {}", e.getMessage());
+			throw e;
+		}
 	}
 
 }

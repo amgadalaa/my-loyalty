@@ -11,11 +11,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.core.ChannelAwareMessageListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.rabbitmq.client.Channel;
 
 @Service
+@Lazy
 public class MultipleQueueMessageListener implements ChannelAwareMessageListener {
 
 	private Logger log = LoggerFactory.getLogger(getClass());
