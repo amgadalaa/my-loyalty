@@ -1,0 +1,66 @@
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      Loyal users
+    </div>
+    <div class="card-body">
+      <div id="lusers-list" *ngIf="!isAddOrEdit">
+        
+        <button type="button" (click)="activateAddMode()" class="btn btn-md btn-primary">
+          Add new loyal user
+        </button>
+
+        <table mat-table [dataSource]="allUsers" class="table-striped table-bordered" style="width: 100%">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID</th>
+            <td mat-cell *matCellDef="let luser"> {{luser.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef style="padding:5px"> Name</th>
+            <td mat-cell *matCellDef="let luser" style="padding:5px"> {{luser.username}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef style="padding:5px"> Edit</th>
+            <td mat-cell *matCellDef="let luser" style="padding:5px"> <i class="fa fa-edit fa-lg" title="Edit user"
+                (click)="onEditClick(luser.id)"></i> </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+        </table>
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+          <li class="page-item active">
+            <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">4</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </div>
+
+      <div id="add-edit" *ngIf="isAddOrEdit">
+        <form (ngSubmit)="onAddEditSubmit()" #lusrForm="ngForm">
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="luser-name">Loyal Username</label>
+            <div class="col-md-9">
+              <input type="text" required name="luser-name" [(ngModel)]="tempLusr.username" class="form-control"
+                placeholder="username" />
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-success" [disabled]="!lusrForm.form.valid">Submit</button>
+
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
